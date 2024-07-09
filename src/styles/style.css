@@ -1,0 +1,8 @@
+.hero {
+    background: url("../assets//images/Hero.jpg") no-repeat center ;
+    background-size: cover;
+
+}
+.hero-div {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.62) 50%, rgba(25, 2, 2, 0) 80%);
+}
