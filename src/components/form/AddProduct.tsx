@@ -3,6 +3,7 @@
 import type { GetProp, FormProps, UploadFile, UploadProps } from 'antd';
 import { Button, Form, Input, Upload } from 'antd';
 import { useState } from 'react';
+import { useCreateProductMutation } from '../../redux/featurs/product/productApi';
 
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
@@ -11,7 +12,7 @@ type FieldType = {
   name: string;
   price: number;
   description: string;
-  image: string;
+  images: string;
   category: string;
   stock: number;
 };
@@ -19,12 +20,9 @@ type FieldType = {
 
 export default function addProduct() {
  
+  const [form] = Form.useForm();
+
   const [fileList, setFileList] = useState<UploadFile[]>([]);
-
-  const handelchange =()=> {
-    
-
-  }
     
   const props: UploadProps = {
     beforeUpload: (file) => {
@@ -33,17 +31,17 @@ export default function addProduct() {
     },
     fileList,
   };
-  
-  
+    
   const initialValues = {
-    name: 'Pranesh',
-    price: 25,
-    description: 'string',
-    category: 'string',
-    stock: 20
-  }
+    name: 'Mrinal',
+    price: 220,
+    description: 'not good',
+    category: 'fakibaz',
+    stock: 10,
+    images:"",
+    }
 
-  const [form] = Form.useForm();
+  const [createProduct] = useCreateProductMutation();
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
    
@@ -58,9 +56,11 @@ export default function addProduct() {
     })
     if(res.ok){
       const data = await res.json();
-    values.image = data?.data?.url;
-    console.log(values)
-      // form.resetFields();
+      values.images = data?.data?.url;
+
+    const ressult = await createProduct(values);
+    console.log(ressult)
+      form.resetFields();
     }
   }catch(error){
     console.log(error)
@@ -110,20 +110,7 @@ export default function addProduct() {
         </Form.Item>
 
 
-        <Form.Item
-          label="Images"
-          name="image"
-          rules={[{ required: true, message: 'Please select a image!' }]}
-        >
-          <Upload
-            {...props}
-            onChange = {handelchange}
-           
-          >
-            <Button>select</Button>
-          </Upload>
-
-        </Form.Item>
+      
 
         <Form.Item<FieldType>
           label="Category"
@@ -135,9 +122,22 @@ export default function addProduct() {
         <Form.Item<FieldType>
           label="Stok"
           name="stock"
-          rules={[{ required: true, type:'number', message: 'Please input your stock amount' }]}
+          rules={[{ required: true, message: 'Please input your stock amount' }]}
         >
           <Input />
+        </Form.Item>
+
+          <Form.Item
+          label="Images"
+          name="images"
+          rules={[{ required: true, message: 'Please select a image!' }]}
+        >
+          <Upload
+            {...props}           
+          >
+            <Button>select</Button>
+          </Upload>
+
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
@@ -146,8 +146,6 @@ export default function addProduct() {
           </Button>
         </Form.Item>
       </Form>
-
-
     </div>
   )
 }
