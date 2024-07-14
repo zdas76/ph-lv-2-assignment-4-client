@@ -1,14 +1,15 @@
 import { Table } from 'antd';
 import type { TableColumnsType } from 'antd';
+import { Image } from 'antd';
 import { useGetAllProductQuery } from '../../redux/featurs/product/productApi';
 
 
 interface DataType {
   key: React.Key;
   name: string;
-  images: number;
-  stock: string;
-  price: string;
+  images: string;
+  stock: number
+  price: number;
   description: string;
 }
 
@@ -25,15 +26,20 @@ const Products= data.data;
     console.log(Products)
 
     const columns: TableColumnsType<DataType> = [
-    { title: 'Images', dataIndex: 'images', key: 'images' },
-    { title: 'Name', dataIndex: 'name', key: 'name' },
-    { title: 'Description', dataIndex: 'description', key: 'description' },
-    { title: 'Stock', dataIndex: 'stock', key: 'stock' },
-    { title: 'price', dataIndex: 'price', key: 'price' },
+    { title: 'Images', dataIndex: 'images', key: 'images', width: '15%',
+      render: (images) => <span><Image width={60} src={images} /></span>,
+     },
+    { title: 'Name', dataIndex: 'name', key: 'name', width: '15%'},
+    { title: 'Description', dataIndex: 'description', key: 'description', width: '30%',
+      render: (description) => <span className='line-clamp-2'> {description}</span>,
+     },
+    { title: 'Stock', dataIndex: 'stock', key: 'stock', width: '10%' },
+    { title: 'price', dataIndex: 'price', key: 'price', width: '10%', },
     {
         title: 'Action',
         dataIndex: '',
         key: 'x',
+        width: '20%',
         render: () => <div><a>Delete</a> <a>Update</a></div>,
     },
 ];

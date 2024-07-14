@@ -4,6 +4,7 @@ import About from "../pages/About";
 import Products from "../pages/Products";
 import RootLayout from "../components/layout/RootLayout";
 import ProdctManagement from "../pages/ProdctManagement";
+import ViewsProduct from "../pages/ViewsProduct";
 
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
       path: "/product",
       element: <Products />
+    },
+      {
+      path: "/product/:id",
+      element: <ViewsProduct />
     },
     {
       path: "/productmanage",

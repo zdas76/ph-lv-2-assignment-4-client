@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { tagTypesList } from "../tag-types";
 
 const baseQuery = fetchBaseQuery({
   // baseUrl: "https://assig-4-server.vercel.app/api/v1/",
@@ -12,6 +13,6 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQuery,
-  tagTypes: ["product"],
   endpoints: () => ({}),
+  tagTypes: tagTypesList,
 });

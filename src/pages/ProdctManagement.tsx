@@ -1,6 +1,5 @@
 
 import AddProdcutModal from '../components/modal/AddProdcutModal'
-// import { useGetAllProductQuery } from '../redux/featurs/product/productApi';
 import ProductTable from '../components/productManagement/ProductTable';
 
 export default function ProdctManagement() {

@@ -32,7 +32,7 @@ const items1 = [
 
 export default function RootLayout() {
   return (
-   <Layout style={{height:"100vh"}}>
+   <Layout style={{}}>
       <Header style={{ display: 'flex', alignItems: 'center', justifyContent:'space-around' }}>
         <div className="demo-logo">
           <h1 style={{marginRight:'20px', padding: '10px, 5px', }}><NavLink to="/" style={{color:'white', padding:'5px 30px' }}>SFEA</NavLink> </h1>
@@ -59,13 +59,14 @@ export default function RootLayout() {
               padding: 24,
               margin: 0,
               minHeight: 280,
+              height:'95vh'
             }}
           >
             <Outlet />
           </Content>
           
         </Layout>
-        <Footer style={{ textAlign: 'center', backgroundColor: 'black', color: 'white', fontSize: '13px' }}>
+          <Footer style={{ textAlign: 'center', backgroundColor: 'black', color: 'white', fontSize: '13px' }}>
             <Footers />
           </Footer>
       </Layout>

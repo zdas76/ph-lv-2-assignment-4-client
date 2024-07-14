@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import type { GetProp, FormProps, UploadFile, UploadProps } from 'antd';
-import { Button, Form, Input, Upload } from 'antd';
+import { Button, Form, Input, InputNumber, Upload } from 'antd';
 import { useState } from 'react';
 import { useCreateProductMutation } from '../../redux/featurs/product/productApi';
+import TextArea from 'antd/es/input/TextArea';
 
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
@@ -33,12 +34,12 @@ export default function addProduct() {
   };
     
   const initialValues = {
-    name: 'Mrinal',
-    price: 220,
-    description: 'not good',
-    category: 'fakibaz',
-    stock: 10,
-    images:"",
+    name: '',
+    price: '',
+    description: '',
+    category: '',
+    stock: '',
+    images: '',
     }
 
   const [createProduct] = useCreateProductMutation();
@@ -98,7 +99,7 @@ export default function addProduct() {
           name="price"
           rules={[{ required: true, message: 'Please input your price!' }]}
         >
-          <Input />
+          <InputNumber style={{ width: '100%' }} />
         </Form.Item>
 
         <Form.Item<FieldType>
@@ -106,7 +107,7 @@ export default function addProduct() {
           name="description"
           rules={[{ required: true, message: 'Please input your description!' }]}
         >
-          <Input />
+          <TextArea rows={3} />
         </Form.Item>
 
 
@@ -119,12 +120,13 @@ export default function addProduct() {
         >
           <Input />
         </Form.Item>
+
         <Form.Item<FieldType>
           label="Stok"
           name="stock"
           rules={[{ required: true, message: 'Please input your stock amount' }]}
         >
-          <Input />
+          <InputNumber style={{ width: '100%' }}/>
         </Form.Item>
 
           <Form.Item
