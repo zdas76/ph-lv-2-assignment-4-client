@@ -4,7 +4,6 @@ import ProductTable from '../components/productManagement/ProductTable';
 
 export default function ProdctManagement() {
 
- 
   
   return (
     <div>

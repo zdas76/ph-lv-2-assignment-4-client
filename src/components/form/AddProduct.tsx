@@ -61,7 +61,8 @@ export default function addProduct() {
 
     const ressult = await createProduct(values);
     console.log(ressult)
-      form.resetFields();
+      form.resetFields()
+      setFileList([]);
     }
   }catch(error){
     console.log(error)

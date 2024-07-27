@@ -1,32 +1,116 @@
-
-import { useGetAllProductQuery } from '../redux/featurs/product/productApi';
-import Items from '../components/productManagement/Items';
-import { Row } from 'antd';
+import { Button, Input, Select } from "antd";
+import type { SelectProps } from "antd";
+import {
+  useGetAllProductQuery,
+  useGetProductCategoryQuery,
+} from "../redux/featurs/product/productApi";
+import Items from "../components/productManagement/Items";
+import { Row, Pagination } from "antd";
+import { useEffect, useState } from "react";
+import { SearchOutlined } from "@ant-design/icons";
+import { useLocation, useParams } from "react-router-dom";
 type TItem = {
-    _id: string;
-    category: string;
-    description: string;
-    images: string;
-    name: string;
-    price: number;
-    stock: number;
-}
-export default function Products() {
-  const {data, isLoading} = useGetAllProductQuery(undefined);
+  _id: string;
+  category: string;
+  description: string;
+  images: string;
+  name: string;
+  price: number;
+  stock: number;
+};
 
-  if(isLoading){
-    <p>... Loading</p>
+export default function Products() {
+  // const [size, setSize] = useState<SizeType>();
+  const [searchTerm, setSearchTerm] = useState({});
+  const [fields, setFields] = useState({});
+  const [sort, setSort] = useState({});
+  // const [page, setPage] = useState({});
+  // const [limit, setLimit] = useState({});
+
+  const { state } = useLocation();
+
+  useEffect(() => {
+    if (state) {
+      setFields(state);
+    }
+  }, []);
+
+  const { data: category, isLoading } = useGetProductCategoryQuery("");
+  if (isLoading) {
+    <p> .... Loading Category</p>;
   }
-const items = data?.data;
-console.log(items)
+  const catagories = [
+    ...new Set(category?.data?.map((item: TItem) => item.category)),
+  ];
+
+  const { data: product, isLoading: productLoading } = useGetAllProductQuery({
+    searchTerm,
+    sort,
+    fields,
+  });
+
+  if (productLoading) {
+    <p>... Loading</p>;
+  }
+  const items = product?.data;
+
+  const options: SelectProps["options"] = [];
+  catagories?.map((item) => {
+    options.push({
+      value: item,
+      label: item,
+    });
+  });
+
+  const onReset = () => {
+    setSearchTerm({}), setFields({}), setSort({});
+  };
+
   return (
     <div>
-      <div></div>
-      <Row gutter={[24, 28]} justify="start">
-        {
-          items?.map((item:TItem, index:number) => <Items {...item} key={index} />)
-        }
+      <div className="my-10 flex gap-5 justify-center">
+        <Input
+          addonBefore={<SearchOutlined />}
+          placeholder="Type Search Item"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full md:w-96"
+        />
+
+        <Select
+          // defaultValue={state}
+          onChange={(value) => setFields(`${value}`)}
+          mode="multiple"
+          placeholder="Please select"
+          className="w-full md:w-96"
+          options={options}
+        />
+
+        <Select
+          defaultValue=""
+          style={{ width: "20%" }}
+          onChange={(value) => setSort(`${value}`)}
+          options={[
+            { value: "", label: "Select one" },
+            { value: "price", label: "Low to high" },
+            { value: "-price", label: "High to low" },
+          ]}
+          className="w-full md:w-96"
+        />
+
+        <Button htmlType="button" onClick={onReset} className="w-28">
+          Reset
+        </Button>
+      </div>
+      <Row
+        gutter={[24, 28]}
+        justify="start"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+      >
+        {items?.map((item: TItem, index: number) => (
+          <Items {...item} key={index} />
+        ))}
       </Row>
+      <Pagination defaultCurrent={5} total={20} />
     </div>
-  )
+  );
 }
