@@ -2,6 +2,8 @@ import Footers from "../Footer/Footer";
 import { Layout, Menu } from "antd";
 
 import { NavLink, Outlet } from "react-router-dom";
+import Drower from "./Drower";
+import { ShoppingCart } from "lucide-react";
 
 const { Header, Content, Footer } = Layout;
 
@@ -51,15 +53,17 @@ export default function RootLayout() {
           mode="horizontal"
           defaultSelectedKeys={["2"]}
           items={items1}
-          style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            fontSize: "18px",
-          }}
+          className="hidden md:flex md:flex-1 justify-center text-xl "
         />
-        <div>
-          <h1 style={{ color: "white" }}>icon</h1>
+        <div className="flex flex-row gap-5 justify-center items-center">
+          <div className="">
+            <NavLink to="/cart">
+              <ShoppingCart className="text-white" />
+            </NavLink>
+          </div>
+          <div className="md:hidden  mt-4">
+            <Drower />
+          </div>
         </div>
       </Header>
       <Layout>

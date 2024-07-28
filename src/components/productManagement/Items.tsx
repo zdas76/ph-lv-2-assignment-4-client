@@ -1,5 +1,7 @@
 import { Button, Image } from "antd";
 import { NavLink } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { addToCart } from "../../redux/featurs/cart/cartSlice";
 
 type TItem = {
   _id: string;
@@ -11,6 +13,7 @@ type TItem = {
   stock: number;
 };
 export default function Items(item: TItem) {
+  const dispatch = useAppDispatch();
   return (
     <div className="border p-2 shadow rounded flex flex-col justify-between bg-white overflow-hidden group">
       <div>
@@ -19,8 +22,9 @@ export default function Items(item: TItem) {
         </p>
         <div className="relative">
           <Image className="w-full" src={item.images} />
-          <div className="p-4 bg-red-500 text-white absolute -right-full group-hover:right-0 duration-300 min-w-[100px] bottom-1.5 rounded-lg flex justify-center cursor-pointer">
+          <div className="px-4 py-2 bg-green-500 text-white absolute -right-full group-hover:right-0 duration-300 min-w-[100px] bottom-1.5 rounded-md flex justify-center cursor-pointer">
             <svg
+              onClick={() => dispatch(addToCart(item))}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"

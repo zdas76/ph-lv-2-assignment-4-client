@@ -30,9 +30,6 @@ export const productApi = baseApi.injectEndpoints({
         if (data?.fields?.length > 0) {
           params.append("category", data.fields);
         }
-        if (data?.fields) {
-          params.append("fields", data.fields);
-        }
 
         return {
           url: "/products",
@@ -53,6 +50,7 @@ export const productApi = baseApi.injectEndpoints({
     }),
     getProductId: builder.query({
       query: (id) => {
+        console.log(id);
         return {
           url: `/products/${id.id}`,
           method: "GET",

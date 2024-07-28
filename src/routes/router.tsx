@@ -5,7 +5,7 @@ import Products from "../pages/Products";
 import RootLayout from "../components/layout/RootLayout";
 import ProdctManagement from "../pages/ProdctManagement";
 import ViewsProduct from "../pages/ViewsProduct";
-
+import Cart from "../pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -13,34 +13,35 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       {
-      index: true,
-      element: <App />
+        index: true,
+        element: <App />,
       },
       {
-      path: "/home",
-      element: <App />
+        path: "/home",
+        element: <App />,
       },
       {
-      path: "/product",
-      element: <Products />
-    },
+        path: "/product",
+        element: <Products />,
+      },
       {
-      path: "/product/:id",
-      element: <ViewsProduct />
-    },
-    {
-      path: "/productmanage",
-      element: <ProdctManagement />,
-    
-    },
-    {
-      path: "/about",
-      element: <About />
-    },
-      ]
-    },
-  
-  
+        path: "/product/:id",
+        element: <ViewsProduct />,
+      },
+      {
+        path: "/productmanage",
+        element: <ProdctManagement />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+    ],
+  },
 ]);
 
 export default router;

@@ -9,7 +9,7 @@ export default function ImageGalerry() {
   }
 
   const featuredProduct = data?.data?.slice(0, 18);
-  console.log(featuredProduct);
+  // console.log(featuredProduct);
 
   return (
     <div className="my-20">
@@ -18,7 +18,7 @@ export default function ImageGalerry() {
       </p>
 
       <div className=" grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 bg-white">
-        {featuredProduct.map((item) => (
+        {featuredProduct?.map((item) => (
           <Image src={item.images} className="p-5" />
         ))}
       </div>

@@ -8,7 +8,7 @@ import Items from "../components/productManagement/Items";
 import { Row, Pagination } from "antd";
 import { useEffect, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 type TItem = {
   _id: string;
   category: string;
