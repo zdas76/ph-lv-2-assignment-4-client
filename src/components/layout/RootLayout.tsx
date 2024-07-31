@@ -4,10 +4,11 @@ import { Layout, Menu } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import Drower from "./Drower";
 import { ShoppingCart } from "lucide-react";
+import { useAppSelector } from "../../redux/hooks";
 
 const { Header, Content, Footer } = Layout;
 
-const items1 = [
+export const items1 = [
   {
     key: "Home",
     label: <NavLink to={"/home"}>Home</NavLink>,
@@ -29,6 +30,9 @@ const items1 = [
 // navberItemsGenerator();
 
 export default function RootLayout() {
+  const state = useAppSelector((state) => state.carts.carts);
+  console.log(state);
+
   return (
     <Layout style={{}}>
       <Header
@@ -39,14 +43,16 @@ export default function RootLayout() {
         }}
       >
         <div className="demo-logo">
-          <h1 style={{ marginRight: "20px", padding: "10px, 5px" }}>
-            <NavLink
-              to="/"
-              style={{ color: "white", padding: "5px 30px", fontSize: "25px" }}
-            >
-              <img src="icons/Logo.png" alt="Logo" width={90} />
-            </NavLink>
-          </h1>
+          <NavLink
+            to="/"
+            style={{
+              color: "white",
+              padding: "5px 30px",
+              fontSize: "25px",
+            }}
+          >
+            <img src="icons/Logo.png" alt="Logo" width={90} />
+          </NavLink>
         </div>
         <Menu
           theme="dark"
@@ -56,12 +62,15 @@ export default function RootLayout() {
           className="hidden md:flex md:flex-1 justify-center text-xl "
         />
         <div className="flex flex-row gap-5 justify-center items-center">
-          <div className="">
+          <div className="flex flex-col">
             <NavLink to="/cart">
-              <ShoppingCart className="text-white" />
+              <div className="bg-red-500 text-white flex justify-center items-center rounded-full h-6">
+                {state.length}
+              </div>
+              <ShoppingCart className="text-white font-bold" />
             </NavLink>
           </div>
-          <div className="md:hidden  mt-4">
+          <div className="md:hidden mt-4 cursor-pointer">
             <Drower />
           </div>
         </div>

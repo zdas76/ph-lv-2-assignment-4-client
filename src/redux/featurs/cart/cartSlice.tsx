@@ -8,8 +8,13 @@ type TCart = {
   name: string;
   price: number;
   stock: number;
+  quantity: number;
 };
 
+type TItem = {
+  id: string;
+  quantity: number;
+};
 type TInitialState = {
   carts: TCart[];
 };
@@ -28,11 +33,16 @@ const cartSlice = createSlice({
       if (isExised) {
         throw "Already Exised";
       } else {
-        state.carts.push({ ...action.payload });
+        state.carts.push({ ...action.payload, quantity: 1 });
       }
+    },
+
+    productQuantity: (state, action: PayloadAction<TItem>) => {
+      const res = state.carts.find((item) => item._id === action.payload.id);
+      res!.quantity = action.payload.quantity;
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, productQuantity } = cartSlice.actions;
 export default cartSlice.reducer;

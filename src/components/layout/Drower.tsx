@@ -1,7 +1,8 @@
-import { Button, Drawer, Space } from "antd";
+import { Button, Drawer, Menu, Space } from "antd";
 import { AlignRight } from "lucide-react";
 
 import { useState } from "react";
+import { items1 } from "./RootLayout";
 
 export default function Drower() {
   const [open, setOpen] = useState(false);
@@ -23,11 +24,12 @@ export default function Drower() {
         />
       </Space>
       <Drawer
-        title="Drawer with extra actions"
+        title="SFEA"
         placement={"left"}
-        width={500}
+        width={400}
         onClose={onClose}
         open={open}
+        style={{ background: "#000", color: "white" }}
         extra={
           <Space>
             <Button onClick={onClose}>Cancel</Button>
@@ -37,9 +39,13 @@ export default function Drower() {
           </Space>
         }
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <Menu
+          theme="dark"
+          mode="vertical"
+          defaultSelectedKeys={["2"]}
+          items={items1}
+          className="flex flex-col justify-center text-xl bg-black"
+        />
       </Drawer>
     </div>
   );

@@ -40,6 +40,7 @@ export default function ViewsProduct() {
             </p>
             <Button
               type="primary"
+              disabled={product?.stock <= 0}
               className="px-28 py-7 text-white text-xl mt-12"
               onClick={() => dispatch(addToCart(product))}
             >

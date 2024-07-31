@@ -6,6 +6,7 @@ import RootLayout from "../components/layout/RootLayout";
 import ProdctManagement from "../pages/ProdctManagement";
 import ViewsProduct from "../pages/ViewsProduct";
 import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
     ],
   },
