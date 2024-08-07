@@ -3,37 +3,17 @@ import "../../styles/style.css";
 
 export default function HeroSection() {
   return (
-    <div
-      className="hero my-10 md:my-20"
-      style={{ height: "70vh", display: "flex" }}
-    >
-      <div
-        className="hero-div"
-        style={{
-          width: "50%",
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-        }}
-      >
-        <p
-          style={{
-            color: "white",
-            marginLeft: "50px",
-            marginTop: "30%",
-            fontSize: "40px",
-            fontWeight: "bold",
-          }}
-        >
+    <div className="hero my-10 md:my-20 h-[50vh] md:h-[70vh]">
+      <div className="hero-div flex flex-col  md:min-w-1/2 text-center md:text-left justify-center items-center md:items-start h-full gap-5 lg:gap-10">
+        <p className=" text-2xl lg:text-5xl text-white ml-10 lg:ml-20">
           Sculpt Your Space with <br /> Luxurious Fitness Innovation
         </p>
 
-        <p>
+        <p className="ml-10 lg:ml-20">
           <NavLink
             to="/product"
-            className="ms-12 mt-10 text-2xl px-5 py-2 bg-white rounded-2xl font-bold"
+            className="text-2xl px-5 py-2 bg-white rounded-2xl font-bold"
           >
-            {" "}
             Shop Now
           </NavLink>
         </p>

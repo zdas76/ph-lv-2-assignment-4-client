@@ -6,13 +6,13 @@ import ImageGalerry from "./components/home/ImageGalerry";
 
 function App() {
   return (
-    <>
+    <div className="px-2">
       <HeroSection />
       <CategorySection />
       <FeaturedProduct />
       <BenefitsSection />
       <ImageGalerry />
-    </>
+    </div>
   );
 }
 

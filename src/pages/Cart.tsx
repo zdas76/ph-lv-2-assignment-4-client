@@ -1,15 +1,17 @@
 import { useEffect } from "react";
-import { productQuantity } from "../redux/featurs/cart/cartSlice";
+import { deleteItem, productQuantity } from "../redux/featurs/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Image, Button, Input } from "antd";
 import { NavLink } from "react-router-dom";
 import { toast } from "sonner";
+import { Trash } from "lucide-react";
+import { FieldType } from "../types/productTypes";
 
 export default function Cart() {
   const state = useAppSelector((state) => state.carts.carts);
 
   const dispatch = useAppDispatch();
-  const HandelChangeQuantity = (item: any, quantity: number) => {
+  const HandelChangeQuantity = (item: FieldType, quantity: number) => {
     if (quantity > item.stock) {
       toast.error("Quantity not Avabalable");
     }
@@ -21,6 +23,9 @@ export default function Cart() {
     0
   );
 
+  const handelDelete = (id: string) => {
+    dispatch(deleteItem(id));
+  };
   useEffect(() => {
     if (state.length > 0) {
       window.onbeforeunload = () => true;
@@ -44,7 +49,8 @@ export default function Cart() {
         </p>
         <span className="w-[15%]">Unite Price</span>
         <span className="w-[15%]">Quantity</span>
-        <span className="w-[15%]">Amount</span>
+        <span className="w-[10%]">Amount</span>
+        <span className="w-[5%]">Action</span>
       </div>
       <div>
         {state.map((item, index) => (
@@ -89,8 +95,14 @@ export default function Cart() {
               </Button>
             </span>
 
-            <span className="w-[15%] text-center">
+            <span className="w-[10%] text-center">
               {item.price * item.quantity}
+            </span>
+            <span className="border rounded-full bg-blue-400 p-3">
+              <Trash
+                onClick={() => handelDelete(item._id)}
+                className="cursor-pointer text-white text-2xl"
+              />
             </span>
           </div>
         ))}

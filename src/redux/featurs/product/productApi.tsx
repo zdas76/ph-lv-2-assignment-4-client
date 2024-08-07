@@ -59,13 +59,29 @@ export const productApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.product],
     }),
 
-    updateTodo: builder.mutation({
+    updateProduct: builder.mutation({
       query: (data) => {
-        console.log("inside base api =>", data);
+        console.log(data.id);
+        const updateData = {
+          name: data.name,
+          category: data.category,
+          description: data.description,
+          price: data.price,
+          stock: data.stock,
+        };
         return {
           url: `/products/${data.id}`,
           method: "PUT",
-          body: data.data,
+          body: updateData,
+        };
+      },
+      invalidatesTags: [tagTypes.product],
+    }),
+    deteProduct: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/products/${id}`,
+          method: "DELETE",
         };
       },
       invalidatesTags: [tagTypes.product],
@@ -78,4 +94,6 @@ export const {
   useCreateProductMutation,
   useGetProductIdQuery,
   useGetProductCategoryQuery,
+  useUpdateProductMutation,
+  useDeteProductMutation,
 } = productApi;

@@ -9,6 +9,8 @@ import { Row, Pagination } from "antd";
 import { useEffect, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
+import type { PaginationProps } from "antd";
+
 type TItem = {
   _id: string;
   category: string;
@@ -24,8 +26,8 @@ export default function Products() {
   const [searchTerm, setSearchTerm] = useState({});
   const [fields, setFields] = useState({});
   const [sort, setSort] = useState({});
-  // const [page, setPage] = useState({});
-  // const [limit, setLimit] = useState({});
+  // const [page, setPage] = useState(1);
+  // const [limit, setLimit] = useState(8);
 
   const { state } = useLocation();
 
@@ -33,7 +35,14 @@ export default function Products() {
     if (state) {
       setFields(state);
     }
-  }, []);
+  }, [state]);
+
+  const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
+    current,
+    pageSize
+  ) => {
+    console.log(current, pageSize);
+  };
 
   const { data: category, isLoading } = useGetProductCategoryQuery("");
   if (isLoading) {
@@ -55,11 +64,9 @@ export default function Products() {
   const items = product?.data;
 
   const options: SelectProps["options"] = [];
-  catagories?.map((item) => {
-    options.push({
-      value: item,
-      label: item,
-    });
+
+  catagories?.map((item: any) => {
+    return options.push({ value: item, label: item });
   });
 
   const onReset = () => {
@@ -67,7 +74,7 @@ export default function Products() {
   };
 
   return (
-    <div>
+    <div className="px-5 md:px-0">
       <div className="my-10 flex gap-5 justify-center">
         <Input
           addonBefore={<SearchOutlined />}
@@ -104,13 +111,18 @@ export default function Products() {
       <Row
         gutter={[24, 28]}
         justify="start"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 "
       >
         {items?.map((item: TItem, index: number) => (
           <Items {...item} key={index} />
         ))}
       </Row>
-      <Pagination defaultCurrent={5} total={20} />
+      <Pagination
+        showSizeChanger
+        onShowSizeChange={onShowSizeChange}
+        defaultCurrent={10}
+        total={product?.length}
+      />
     </div>
   );
 }

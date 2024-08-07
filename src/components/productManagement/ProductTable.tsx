@@ -1,7 +1,12 @@
 import { Table } from "antd";
 import type { TableColumnsType } from "antd";
 import { Image } from "antd";
-import { useGetAllProductQuery } from "../../redux/featurs/product/productApi";
+import {
+  useDeteProductMutation,
+  useGetAllProductQuery,
+} from "../../redux/featurs/product/productApi";
+import AddProdcutModal from "../modal/AddProdcutModal";
+import { Trash2 } from "lucide-react";
 
 interface DataType {
   key: React.Key;
@@ -13,15 +18,19 @@ interface DataType {
 }
 
 export default function ProductTable() {
-  // const { data, isLoading } = useGetAllProductQuery({});
-  const { data:product, isLoading:productLoading } = useGetAllProductQuery({});
+  const { data: product, isLoading: productLoading } = useGetAllProductQuery(
+    {}
+  );
+  const [deleteProduct] = useDeteProductMutation();
+
+  const handelDelete = (id: string) => {
+    deleteProduct(id);
+  };
 
   if (productLoading) {
     return <p>Loading .....</p>;
   }
   const Products = product?.data;
-
-  console.log(product);
 
   const columns: TableColumnsType<DataType> = [
     {
@@ -52,9 +61,13 @@ export default function ProductTable() {
       dataIndex: "",
       key: "x",
       width: "20%",
-      render: () => (
-        <div>
-          <a>Delete</a> <a>Update</a>
+      render: (Products) => (
+        <div className="flex gap-5">
+          <AddProdcutModal {...Products} />
+          <Trash2
+            onClick={() => handelDelete(Products._id)}
+            className="cursor-pointer"
+          />
         </div>
       ),
     },
