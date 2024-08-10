@@ -24,7 +24,7 @@ export default function Cart() {
   );
 
   const handelDelete = (id: string) => {
-    dispatch(deleteItem(id));
+    dispatch(deleteItem({ id }));
   };
   useEffect(() => {
     if (state.length > 0) {
