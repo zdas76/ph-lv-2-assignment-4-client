@@ -1,9 +1,5 @@
 import { useEffect } from "react";
-import {
-  deleteItem,
-  productQuantity,
-  TItem,
-} from "../redux/featurs/cart/cartSlice";
+import { deleteItem, productQuantity } from "../redux/featurs/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Image, Button, Input } from "antd";
 import { NavLink } from "react-router-dom";
@@ -27,7 +23,7 @@ export default function Cart() {
     0
   );
 
-  const handelDelete = (id: TItem) => {
+  const handelDelete = (id: string) => {
     dispatch(deleteItem(id));
   };
   useEffect(() => {
