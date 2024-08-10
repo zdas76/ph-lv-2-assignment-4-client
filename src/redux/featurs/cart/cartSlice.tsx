@@ -1,15 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type TCart = {
-  _id: string;
-  category: string;
-  description: string;
-  images: string;
-  name: string;
-  price: number;
-  stock: number;
-  quantity: number;
-};
+import { TCart } from "../../../types/productTypes";
 
 type TItem = {
   id: string;
@@ -27,14 +17,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<TCart>) => {
-      const isExised = state.carts.find(
-        (item) => item._id === action.payload._id
-      );
-      if (isExised) {
-        throw "Already Exised";
-      } else {
-        state.carts.push({ ...action.payload, quantity: 1 });
-      }
+      state.carts.push({ ...action.payload, quantity: 1 });
     },
 
     productQuantity: (state, action: PayloadAction<TItem>) => {
@@ -42,7 +25,7 @@ const cartSlice = createSlice({
       res!.quantity = action.payload.quantity;
     },
 
-    deleteItem: (state, action: PayloadAction<id>) => {
+    deleteItem: (state, action: PayloadAction<TItem>) => {
       state.carts = state.carts.filter(
         (item) => item._id !== action.payload.id
       );

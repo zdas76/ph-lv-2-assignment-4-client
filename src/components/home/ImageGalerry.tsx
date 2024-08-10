@@ -8,7 +8,7 @@ export default function ImageGalerry() {
     <p>Loading ....</p>;
   }
 
-  const featuredProduct = data?.data?.slice(0, 18);
+  const featuredProduct = data?.data?.result.slice(0, 18);
   // console.log(featuredProduct);
 
   return (
@@ -18,8 +18,8 @@ export default function ImageGalerry() {
       </p>
 
       <div className=" grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 bg-white">
-        {featuredProduct?.map((item) => (
-          <Image src={item.images} className="p-5" />
+        {featuredProduct?.map((item: string) => (
+          <Image src={item?.images} className="p-5" />
         ))}
       </div>
     </div>

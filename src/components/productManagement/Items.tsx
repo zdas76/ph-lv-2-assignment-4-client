@@ -1,19 +1,26 @@
 import { Button, Image } from "antd";
 import { NavLink } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addToCart } from "../../redux/featurs/cart/cartSlice";
+import { TCart } from "../../types/productTypes";
+import { toast } from "sonner";
 
-type TItem = {
-  _id: string;
-  category: string;
-  description: string;
-  images: string;
-  name: string;
-  price: number;
-  stock: number;
-};
-export default function Items(item: TItem) {
+export default function Items(item: TCart) {
   const dispatch = useAppDispatch();
+  const state = useAppSelector((state) => state.carts.carts);
+
+  const handelAddToCart = (product: TCart) => {
+    const isExist = state.find((item) => item._id === product._id);
+    if (isExist) {
+      toast.error("This product already added");
+      return;
+    } else if (product.stock < 1) {
+      toast.error("This product not available");
+      return;
+    }
+    dispatch(addToCart(product));
+  };
+
   return (
     <div className="border p-2 shadow rounded flex flex-col justify-between bg-white overflow-hidden group">
       <div>
@@ -23,7 +30,7 @@ export default function Items(item: TItem) {
         <div className="relative">
           <Image className="w-full" src={item.images} />
           <Button
-            onClick={() => dispatch(addToCart(item))}
+            onClick={() => handelAddToCart(item)}
             disabled={item.stock == 0}
             className="px-4 py-2 bg-green-500 text-white absolute -right-full group-hover:right-0 duration-300 min-w-[100px] bottom-1.5 rounded-md flex justify-center cursor-pointer"
           >

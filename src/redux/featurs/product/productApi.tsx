@@ -16,8 +16,12 @@ export const productApi = baseApi.injectEndpoints({
     getAllProduct: builder.query({
       query: (data) => {
         const params = new URLSearchParams();
+        console.log(data);
         if (data.limit) {
           params.append("limit", data.limit);
+        }
+        if (data.page) {
+          params.append("page", data.page);
         }
 
         if (data.searchTerm) {

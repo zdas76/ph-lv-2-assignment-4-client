@@ -31,29 +31,20 @@ export const items1 = [
 
 export default function RootLayout() {
   const state = useAppSelector((state) => state.carts.carts);
-  console.log(state);
 
   return (
-    <Layout style={{}}>
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div className="demo-logo">
-          <NavLink
-            to="/"
-            style={{
-              color: "white",
-              padding: "5px 30px",
-              fontSize: "25px",
-            }}
-          >
-            <img src="icons/Logo.png" alt="Logo" width={90} />
-          </NavLink>
-        </div>
+    <Layout className="">
+      <Header className="flex justify-between w-full items-center">
+        <NavLink
+          to="/"
+          style={{
+            color: "white",
+            padding: "5px 30px",
+            fontSize: "25px",
+          }}
+        >
+          <img src="icons/Logo.png" alt="Logo" width={90} />
+        </NavLink>
         <Menu
           theme="dark"
           mode="horizontal"
@@ -75,7 +66,7 @@ export default function RootLayout() {
           </div>
         </div>
       </Header>
-      <Layout>
+      <Layout className="mt-[50px]">
         <Layout>
           <Content className="container mx-auto min-h-dvh">
             <Outlet />
@@ -87,6 +78,7 @@ export default function RootLayout() {
             backgroundColor: "black",
             color: "white",
             fontSize: "13px",
+            marginTop: "150px",
           }}
         >
           <Footers />

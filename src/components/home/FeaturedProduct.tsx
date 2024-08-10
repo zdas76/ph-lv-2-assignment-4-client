@@ -1,6 +1,7 @@
 import { Button, Image } from "antd";
 import { useGetAllProductQuery } from "../../redux/featurs/product/productApi";
 import { NavLink } from "react-router-dom";
+import { TCart } from "../../types/productTypes";
 
 export default function FeaturedProduct() {
   const { data, isLoading } = useGetAllProductQuery({});
@@ -9,7 +10,7 @@ export default function FeaturedProduct() {
     <p>Loading ....</p>;
   }
 
-  const featuredProduct = data?.data?.slice(3, 7);
+  const featuredProduct = data?.data?.result.slice(3, 7);
 
   return (
     <div className="my-20">
@@ -19,7 +20,7 @@ export default function FeaturedProduct() {
         </p>
       </div>
       <div className="grid gap-5 grid-cols-1, md:grid-cols-2 lg:grid-cols-4 ">
-        {featuredProduct?.map((product, inx: string) => (
+        {featuredProduct?.map((product: TCart, inx: string) => (
           <div
             key={inx}
             className="border p-3 shadow rounded flex flex-col justify-between bg-white overflow-hidden group"
@@ -28,7 +29,7 @@ export default function FeaturedProduct() {
               <p className="md:text-md text-lg font-bold mb-3 max-w-full">
                 {product.name}
               </p>
-              <div className="relative">
+              <div className="relative -z-0">
                 <Image className="w-full" src={product.images} />
               </div>
               <p className="font-bold mb-2">{product.category}</p>

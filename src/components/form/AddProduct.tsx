@@ -9,6 +9,7 @@ import {
 } from "../../redux/featurs/product/productApi";
 import TextArea from "antd/es/input/TextArea";
 import { FieldType } from "../../types/productTypes";
+import Swal from "sweetalert2";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -59,7 +60,16 @@ export default function addProduct(props: FieldType) {
           values.images = data?.data?.url;
 
           const ressult = await createProduct(values);
-          console.log(ressult);
+
+          if (ressult.data) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Product Added Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
           form.resetFields();
           setFileList([]);
         }

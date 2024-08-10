@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Input, Select } from "antd";
 import type { SelectProps } from "antd";
 import {
@@ -9,7 +10,6 @@ import { Row, Pagination } from "antd";
 import { useEffect, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
-import type { PaginationProps } from "antd";
 
 type TItem = {
   _id: string;
@@ -22,12 +22,12 @@ type TItem = {
 };
 
 export default function Products() {
-  // const [size, setSize] = useState<SizeType>();
-  const [searchTerm, setSearchTerm] = useState({});
+  // const [size, setSize] = useState(6);
+  const [searchTerm, setSearchTerm] = useState("");
   const [fields, setFields] = useState({});
   const [sort, setSort] = useState({});
-  // const [page, setPage] = useState(1);
-  // const [limit, setLimit] = useState(8);
+  const [page, setPage] = useState(1);
+  const [limit] = useState(8);
 
   const { state } = useLocation();
 
@@ -36,13 +36,6 @@ export default function Products() {
       setFields(state);
     }
   }, [state]);
-
-  const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
-    current,
-    pageSize
-  ) => {
-    console.log(current, pageSize);
-  };
 
   const { data: category, isLoading } = useGetProductCategoryQuery("");
   if (isLoading) {
@@ -56,12 +49,16 @@ export default function Products() {
     searchTerm,
     sort,
     fields,
+    page,
+    limit,
   });
+
+  const count = product?.data?.count;
 
   if (productLoading) {
     <p>... Loading</p>;
   }
-  const items = product?.data;
+  const items = product?.data?.result;
 
   const options: SelectProps["options"] = [];
 
@@ -70,7 +67,7 @@ export default function Products() {
   });
 
   const onReset = () => {
-    setSearchTerm({}), setFields({}), setSort({});
+    setSearchTerm(""), setFields({}), setSort({});
   };
 
   return (
@@ -79,13 +76,14 @@ export default function Products() {
         <Input
           addonBefore={<SearchOutlined />}
           placeholder="Type Search Item"
+          value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full md:w-96"
         />
 
         <Select
-          // defaultValue={state}
           onChange={(value) => setFields(`${value}`)}
+          // value={fields}
           mode="multiple"
           placeholder="Please select"
           className="w-full md:w-96"
@@ -93,11 +91,12 @@ export default function Products() {
         />
 
         <Select
-          defaultValue=""
+          value={sort}
+          defaultValue={"Select one"}
           style={{ width: "20%" }}
           onChange={(value) => setSort(`${value}`)}
           options={[
-            { value: "", label: "Select one" },
+            { label: "Select one" },
             { value: "price", label: "Low to high" },
             { value: "-price", label: "High to low" },
           ]}
@@ -114,15 +113,18 @@ export default function Products() {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 "
       >
         {items?.map((item: TItem, index: number) => (
-          <Items {...item} key={index} />
+          <Items quantity={0} {...item} key={index} />
         ))}
       </Row>
-      <Pagination
-        showSizeChanger
-        onShowSizeChange={onShowSizeChange}
-        defaultCurrent={10}
-        total={product?.length}
-      />
+      <div className="my-10 flex justify-center">
+        <Pagination
+          pageSize={limit}
+          total={count}
+          pageSizeOptions={[12, 16, 20]}
+          onChange={(page: number) => setPage(page)}
+          current={page}
+        />
+      </div>
     </div>
   );
 }

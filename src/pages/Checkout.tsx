@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Button, Form, Input, Select } from "antd";
 import type { FormProps } from "antd";
@@ -33,7 +33,7 @@ export default function Checkout() {
       })
     );
   }
-
+  const navigate = useNavigate();
   const { state: amount } = useLocation();
 
   const [createProduct] = useCreateOrderMutation(undefined);
@@ -69,7 +69,7 @@ export default function Checkout() {
     };
     createProduct(orderData);
     dispatch(clearCart());
-    Navigate("/dashboard");
+    navigate("/product");
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (

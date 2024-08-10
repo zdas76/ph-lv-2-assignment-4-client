@@ -7,6 +7,7 @@ import {
 } from "../../redux/featurs/product/productApi";
 import AddProdcutModal from "../modal/AddProdcutModal";
 import { Trash2 } from "lucide-react";
+import Swal from "sweetalert2";
 
 interface DataType {
   key: React.Key;
@@ -24,13 +25,30 @@ export default function ProductTable() {
   const [deleteProduct] = useDeteProductMutation();
 
   const handelDelete = (id: string) => {
-    deleteProduct(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProduct(id);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
   };
 
   if (productLoading) {
     return <p>Loading .....</p>;
   }
-  const Products = product?.data;
+  const Products = product?.data.result;
 
   const columns: TableColumnsType<DataType> = [
     {

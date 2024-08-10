@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useGetProductIdQuery } from "../redux/featurs/product/productApi";
 import { Button, Image } from "antd";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addToCart } from "../redux/featurs/cart/cartSlice";
+import { TCart } from "../types/productTypes";
+import { toast } from "sonner";
 
 export default function ViewsProduct() {
   const params = useParams();
@@ -13,6 +15,16 @@ export default function ViewsProduct() {
   }
   const product = data?.data;
   const dispatch = useAppDispatch();
+  const state = useAppSelector((state) => state.carts.carts);
+
+  const handelAddToCart = (product: TCart) => {
+    const isExist = state.find((item) => item._id === product._id);
+    if (isExist) {
+      toast.error("This product already added");
+      return;
+    }
+    dispatch(addToCart(product));
+  };
 
   return (
     <div className="my-20 ">
@@ -42,7 +54,7 @@ export default function ViewsProduct() {
               type="primary"
               disabled={product?.stock <= 0}
               className="px-28 py-7 text-white text-xl mt-12"
-              onClick={() => dispatch(addToCart(product))}
+              onClick={() => handelAddToCart(product)}
             >
               Add to Cart
             </Button>
