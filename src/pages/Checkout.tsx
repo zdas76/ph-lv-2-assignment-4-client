@@ -162,7 +162,6 @@ export default function Checkout() {
               ]}
             >
               <Select
-                defaultValue=""
                 options={[
                   {
                     value: "cashOnPayment",
