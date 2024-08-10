@@ -25,7 +25,7 @@ const cartSlice = createSlice({
       res!.quantity = action.payload.quantity;
     },
 
-    deleteItem: (state, action: PayloadAction<TItem>) => {
+    deleteItem: (state, action: PayloadAction<{ id: string }>) => {
       state.carts = state.carts.filter(
         (item) => item._id !== action.payload.id
       );
