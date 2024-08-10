@@ -5,9 +5,10 @@ import {
   useDeteProductMutation,
   useGetAllProductQuery,
 } from "../../redux/featurs/product/productApi";
-import AddProdcutModal from "../modal/AddProdcutModal";
+
 import { Trash2 } from "lucide-react";
 import Swal from "sweetalert2";
+import UpdateProdcutModal from "../modal/updateProductModal";
 
 interface DataType {
   key: React.Key;
@@ -81,7 +82,7 @@ export default function ProductTable() {
       width: "20%",
       render: (Products) => (
         <div className="flex gap-5">
-          <AddProdcutModal {...Products} />
+          <UpdateProdcutModal {...Products} />
           <Trash2
             onClick={() => handelDelete(Products._id)}
             className="cursor-pointer"
