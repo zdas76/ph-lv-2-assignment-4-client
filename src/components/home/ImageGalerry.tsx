@@ -18,7 +18,7 @@ export default function ImageGalerry() {
       </p>
 
       <div className=" grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 bg-white">
-        {featuredProduct?.map((item: string) => (
+        {featuredProduct?.map((item: { images: string }) => (
           <Image src={item?.images} className="p-5" />
         ))}
       </div>
