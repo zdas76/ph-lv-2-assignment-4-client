@@ -20,7 +20,10 @@ const cartSlice = createSlice({
       state.carts.push({ ...action.payload, quantity: 1 });
     },
 
-    productQuantity: (state, action: PayloadAction<TItem>) => {
+    productQuantity: (
+      state,
+      action: PayloadAction<{ id: string; quantity: number }>
+    ) => {
       const res = state.carts.find((item) => item._id === action.payload.id);
       console.log(res);
       res!.quantity = action.payload.quantity;
