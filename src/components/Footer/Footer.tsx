@@ -8,6 +8,7 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -28,42 +29,58 @@ export default function Footer() {
 
       <div className="pt-10">
         <div></div>
-        <div className="grid grid-flow-col justify-center gap-10 mb-5">
-          <p>
-            <Facebook />
-          </p>
-          <p>
-            <Twitter />
-          </p>
-          <p>
-            <Youtube />
-          </p>
-          <p>
-            <Link2Icon />
-          </p>
-          <p>
-            <Linkedin />
-          </p>
-          <p>
-            <Instagram />
-          </p>
-        </div>
+        <div className="grid grid-flow-col justify-center gap-10 mb-5"></div>
 
-        <div>
-          <div>
-            <h1 className="text-2xl mb-4">Contact Person :</h1>
-            <p className="text-lg font-bold mt-6"> Saswata Das Mrinal</p>
-            <p className="font-semibold">CEO</p>
-            <p>01000000000</p>
-            <p>Email: mrinal_ceo@mail.com</p>
+        <div className="flex flex-row justify-around">
+          <div className="flex flex-col space-y-3">
+            <h1 className="text-xl mb-4">Quick Link :</h1>
+            <Link className="text-blue-300" to="/">
+              Home
+            </Link>
+            <Link className="text-blue-300" to="/product">
+              Product
+            </Link>
+            <Link className="text-blue-300" to="/about">
+              About
+            </Link>
           </div>
-          <div></div>
+          <div className="flex flex-col gap-5">
+            <h1 className="text-xl mb-4">Social Media :</h1>
+            <div className="grid grid-cols-2 gap-3">
+              <p className="cursor-pointer text-blue-400">
+                <Facebook />
+              </p>
+              <p className="cursor-pointer text-blue-400">
+                <Twitter />
+              </p>
+              <p className="cursor-pointer text-blue-400">
+                <Youtube />
+              </p>
+              <p className="cursor-pointer text-blue-400">
+                <Link2Icon />
+              </p>
+              <p className="cursor-pointer text-blue-400">
+                <Linkedin />
+              </p>
+              <p className="cursor-pointer text-blue-400">
+                <Instagram />
+              </p>
+            </div>
+          </div>
+          <div>
+            <h1 className="text-xl mb-4">Contact Person :</h1>
+            <p className="text-lg font-bold mt-6 text-blue-300">
+              Saswata Das Mrinal
+            </p>
+            <p className="font-semibold text-blue-300">CEO</p>
+            <p className="text-blue-400">Email: mrinal_ceo@mail.com</p>
+          </div>
         </div>
 
         <div className="mt-10">
           All right to Sarker Fitness Equipment and Accessories©
           {new Date().getFullYear()} Created by{" "}
-          <span className="text-blue-500">Zibonanando Das</span>
+          <span className="text-blue-500">- Zibonanando Das</span>
         </div>
       </div>
     </div>
