@@ -117,62 +117,68 @@ const responsive = {
 
 export default function About() {
   return (
-    <div className="my-20 w-full container mx-auto">
+    <div className="my-20 w-full container mx-auto px-2">
       <p className="text-3xl font-bold text-center mb-10">About Us</p>
       <div>
-        <p className="text-2xl text-justify font-bold mb-10">
+        <p className="text-xl text-justify font-bold mb-10">
           Sarker Fitness Equipment and Accessories is a fitness brand
           specializing in all kind gym equipment. It is our goal to motivate you
           and provide you with the means to get healthy and Mighty Fit.
         </p>
-        <div className="text-md space-y-6 text-justify my-7">
-          <p>
-            Sarker Fitness Equipment and Accessories is a leading provider of
-            high-quality fitness solutions designed to meet the needs of both
-            professional athletes and fitness enthusiasts. With a commitment to
-            excellence and innovation, Sarker offers a diverse range of products
-            that cater to various fitness levels and goals.
-          </p>
-          <p>
-            Our product line includes state-of-the-art treadmills, ellipticals,
-            stationary bikes, and strength training equipment. Each piece is
-            meticulously engineered to ensure durability, safety, and optimal
-            performance. Sarker's treadmills and ellipticals feature advanced
-            technology, such as customizable workout programs, heart rate
-            monitors, and interactive displays, enhancing the workout
-            experience. Our strength training equipment, from dumbbells and
-            kettlebells to multi-functional home gyms, is designed to help users
-            build muscle, improve endurance, and achieve their fitness goals
-            effectively.
-          </p>
-          <p>
-            In addition to fitness equipment, Sarker also provides a
-            comprehensive selection of accessories, including yoga mats,
-            resistance bands, foam rollers, and fitness trackers. These
-            accessories are crafted from premium materials to ensure longevity
-            and comfort, aiding users in their fitness journey.
-          </p>
-          <p>
-            At Sarker Fitness Equipment and Accessories, customer satisfaction
-            is our top priority. We offer exceptional customer service, with a
-            team of knowledgeable experts ready to assist with product
-            selection, usage tips, and maintenance advice. Our mission is to
-            empower individuals to lead healthier, more active lives by
-            providing them with the tools they need to succeed. Choose Sarker
-            for reliable, innovative, and effective fitness solutions that
-            support your health and wellness goals.
-          </p>
-        </div>
-        <div className="text-center">
-          <Image
-            src="about/aboutHappy.jpg"
-            alt="Image"
-            width="600px"
-            className="mx-auto block "
-          />
+        <div className="flex flex-col lg:flex-row gap-5">
+          <div className="text-md space-y-6 text-justify flex-1">
+            <p>
+              Sarker Fitness Equipment and Accessories is a leading provider of
+              high-quality fitness solutions designed to meet the needs of both
+              professional athletes and fitness enthusiasts. With a commitment
+              to excellence and innovation, Sarker offers a diverse range of
+              products that cater to various fitness levels and goals.
+            </p>
+            <p>
+              Our product line includes state-of-the-art treadmills,
+              ellipticals, stationary bikes, and strength training equipment.
+              Each piece is meticulously engineered to ensure durability,
+              safety, and optimal performance. Sarker's treadmills and
+              ellipticals feature advanced technology, such as customizable
+              workout programs, heart rate monitors, and interactive displays,
+              enhancing the workout experience. Our strength training equipment,
+              from dumbbells and kettlebells to multi-functional home gyms, is
+              designed to help users build muscle, improve endurance, and
+              achieve their fitness goals effectively.
+            </p>
+            <p>
+              In addition to fitness equipment, Sarker also provides a
+              comprehensive selection of accessories, including yoga mats,
+              resistance bands, foam rollers, and fitness trackers. These
+              accessories are crafted from premium materials to ensure longevity
+              and comfort, aiding users in their fitness journey.
+            </p>
+            <p>
+              At Sarker Fitness Equipment and Accessories, customer satisfaction
+              is our top priority. We offer exceptional customer service, with a
+              team of knowledgeable experts ready to assist with product
+              selection, usage tips, and maintenance advice. Our mission is to
+              empower individuals to lead healthier, more active lives by
+              providing them with the tools they need to succeed. Choose Sarker
+              for reliable, innovative, and effective fitness solutions that
+              support your health and wellness goals.
+            </p>
+          </div>
+          <div className="text-center">
+            <Image
+              src="about/aboutHappy.jpg"
+              alt="Image"
+              width="500px"
+              className="mx-auto block "
+            />
+          </div>
         </div>
 
-        <div className="text-md text-justify flex gap-5 items-center my-24 flex-col lg:flex-row">
+        {/* Missing and Vission */}
+        <p className="text-3xl mt-28 mb-5 uppercase font-bold">
+          Missing and Vission
+        </p>
+        <div className="text-md text-justify flex gap-5 items-center mb-24 flex-col lg:flex-row">
           <div className="border p-5 bg-white">
             <h1 className="text-2xl font-bold mb-5">Mission</h1>
             <p>
@@ -206,7 +212,9 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center gap-5">
+
+      <p className="text-3xl mt-28 mb-5 uppercase font-bold">Team Members</p>
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 text-center gap-5 mb-28">
         {team.map((item) => (
           <div className="border rounded-xl p-5 shadow-xl ">
             <p>
@@ -222,6 +230,10 @@ export default function About() {
           </div>
         ))}
       </div>
+
+      <p className="text-3xl mt-28 mb-5 uppercase font-bold">
+        Customer Testimonials
+      </p>
       <div className="my-10 ">
         <Carousel
           responsive={responsive}
@@ -250,9 +262,9 @@ export default function About() {
         <div className="grid grid-cols-4 gap-5"></div>
       </div>
       <div>
-        <div className="">
-          <div className="w-full  mx-auto px-5 py-10  bg-white rounded-xl">
-            <h1 className="uppercase text-black mb-6 text-2xl font-bold">
+        <div className="flex flex-col lg:flex-row gap-5  bg-white rounded-xl">
+          <div className="w-full p-10 lg:w-1/2  lg:border-r-2">
+            <h1 className="uppercase text-black mb-6 text-2xl font-bold ">
               contact for Support
             </h1>
             <Form className="space-y-5">
@@ -267,6 +279,13 @@ export default function About() {
                 Send
               </Button>
             </Form>
+          </div>
+          <div className="w-full  mx-auto px-5 py-10  bg-white rounded-xl lg:w-1/2 text-center p-5">
+            <h1 className="text-2xl mb-4">Contact Person :</h1>
+            <p className="text-lg font-bold mt-6"> Saswata Das Mrinal</p>
+            <p className="font-semibold">CEO</p>
+            <p>01000000000</p>
+            <p>Email: mrinal_ceo@mail.com</p>
           </div>
         </div>
       </div>
