@@ -176,7 +176,7 @@ export default function About() {
 
         {/* Missing and Vission */}
         <p className="text-3xl mt-28 mb-5 uppercase font-bold">
-          Missing and Vission
+          Mission and Vission
         </p>
         <div className="text-md text-justify flex gap-5 items-center mb-24 flex-col lg:flex-row">
           <div className="border p-5 bg-white">
@@ -281,11 +281,17 @@ export default function About() {
             </Form>
           </div>
           <div className="w-full  mx-auto px-5 py-10  bg-white rounded-xl lg:w-1/2 text-center p-5">
-            <h1 className="text-2xl mb-4">Contact Person :</h1>
-            <p className="text-lg font-bold mt-6"> Saswata Das Mrinal</p>
-            <p className="font-semibold">CEO</p>
-            <p>01000000000</p>
-            <p>Email: mrinal_ceo@mail.com</p>
+            <div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28986.954807734997!2d90.37571997508832!3d24.748522316275576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37564f1007ad9b59%3A0x79a59cb060e32d6c!2sMymensingh!5e0!3m2!1sen!2sbd!4v1723398989257!5m2!1sen!2sbd"
+                height="450"
+                className="w-full"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>

@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+Welcome to Assignment 4 varient-1, Here I found a opportunity to showcase my skills in web development by building a dynamic web application. This assignment I integrate various technologies, including React, Redux, Node.js, Express.js, Mongoose, and TypeScript, to create a comprehensive and functional project.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🛠️ Technology Use
+Frontend Development:
+React ⚛️
+Redux 🌀
 
-Currently, two official plugins are available:
+Backend Development:
+Node.js 🟢
+Express.js 🌐
+Mongoose 🍃
+TypeScript 📘
+Package Management:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Additional Technologies:
+Andt design UI
+Sonner
+SweetAlart
+Lusic React for Icon and
+more ..
 
-## Expanding the ESLint configuration
+📤 My Submission :
+Made a README file that explains how to set up and use the application. In the README, include details like the project name, live URL, features, technology used, and other important information. Try to make it look professional by doing some research and making it appealing 📄.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+📤 What I Provide:
+Live link:
+fondEnd: https://ph-lv-2-assignment-4-client.vercel.app
+backEnd: https://assig-4-server.vercel.app
 
-- Configure the top-level `parserOptions` property like this:
+Git Link :
+fondEnd: https://github.com/zdas76/ph-lv-2-assignment-4-client.git
+backEnd: https://github.com/zdas76/ph-lv-2-assignment-4-server.git
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Project Overview Video (A brief video providing an overview of the project) 🎥
+Video Link:

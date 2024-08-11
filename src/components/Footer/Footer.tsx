@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <div className="">
       <div className="relative">
-        <div className="w-full lg:w-6/12 bg-white rounded-xl mx-auto p-8 lg:p-16 -mt-32">
+        <div className="w-full lg:w-6/12 bg-white rounded-xl mx-auto p-5 lg:p-8 -mt-32">
           <h1 className="uppercase text-black mb-6 text-2xl font-bold">
             Our Newsletter
           </h1>
@@ -47,6 +47,17 @@ export default function Footer() {
           <p>
             <Instagram />
           </p>
+        </div>
+
+        <div>
+          <div>
+            <h1 className="text-2xl mb-4">Contact Person :</h1>
+            <p className="text-lg font-bold mt-6"> Saswata Das Mrinal</p>
+            <p className="font-semibold">CEO</p>
+            <p>01000000000</p>
+            <p>Email: mrinal_ceo@mail.com</p>
+          </div>
+          <div></div>
         </div>
 
         <div className="mt-10">

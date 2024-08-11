@@ -46,7 +46,7 @@ export default function Checkout() {
     amount?.totalAmount - Math.round(amount?.totalAmount * 0.05)
   ).toFixed(2);
 
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
     const {
       customerEmail,
       customerName,
@@ -67,9 +67,13 @@ export default function Checkout() {
       deliveryCost,
       totalAmount,
     };
-    createProduct(orderData);
+    const res = await createProduct(orderData);
+
     dispatch(clearCart());
-    navigate("/product");
+
+    if (res.data.success) {
+      navigate("/success");
+    }
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
