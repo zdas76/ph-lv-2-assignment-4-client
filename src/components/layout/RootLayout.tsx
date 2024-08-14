@@ -1,6 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 import Footers from "../Footer/Footer";
 import { Layout, Menu } from "antd";
-
 import { NavLink, Outlet } from "react-router-dom";
 import Drower from "./Drower";
 import { ShoppingCart } from "lucide-react";
