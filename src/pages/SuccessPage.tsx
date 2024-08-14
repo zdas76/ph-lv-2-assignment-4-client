@@ -32,7 +32,7 @@ const SuccessPage = () => {
           className="mt-8"
         >
           <Link
-            to="/products"
+            to="/product"
             className="px-6 py-3 bg-blue-500 text-white font-bold rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 mr-10"
           >
             Continue Shopping
