@@ -28,8 +28,7 @@ export default function Products() {
   const [sort, setSort] = useState({});
   const [page, setPage] = useState(1);
   const [limit] = useState(8);
-  // const [loading, setLoading] = useState(false);
-  const debouncedSearch = useDebounce(searchTerm, 500);
+  const debouncedSearch = useDebounce(searchTerm, 1000);
 
   const { state } = useLocation();
 
