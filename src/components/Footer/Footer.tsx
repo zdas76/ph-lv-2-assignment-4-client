@@ -31,9 +31,9 @@ export default function Footer() {
         <div></div>
         <div className="grid grid-flow-col justify-center gap-10 mb-5"></div>
 
-        <div className="flex flex-row justify-around">
+        <div className="flex md:flex-row justify-around flex-col">
           <div className="flex flex-col space-y-3">
-            <h1 className="text-xl mb-4">Quick Link :</h1>
+            <h1 className="text-lg mb-4">Quick Link :</h1>
             <Link className="text-blue-300" to="/">
               Home
             </Link>
@@ -44,9 +44,9 @@ export default function Footer() {
               About
             </Link>
           </div>
-          <div className="flex flex-col gap-5">
-            <h1 className="text-xl mb-4">Social Media :</h1>
-            <div className="grid grid-cols-2 gap-3">
+          <div className="flex flex-col justify-center items-center gap-5">
+            <h1 className="text-lg mb-4">Social Media :</h1>
+            <div className="grid grid-cols-2 gap-6 mb-5">
               <p className="cursor-pointer text-blue-400">
                 <Facebook />
               </p>
@@ -68,7 +68,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h1 className="text-xl mb-4">Contact Person :</h1>
+            <h1 className="text-lg mb-4">Contact Person :</h1>
             <p className="text-lg font-bold mt-6 text-blue-300">
               Saswata Das Mrinal
             </p>

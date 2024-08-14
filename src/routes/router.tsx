@@ -8,11 +8,13 @@ import ViewsProduct from "../pages/ViewsProduct";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import SuccessPage from "../pages/SuccessPage";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

@@ -5,6 +5,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import Drower from "./Drower";
 import { ShoppingCart } from "lucide-react";
 import { useAppSelector } from "../../redux/hooks";
+import Gotop from "../GoTop";
+import ScrollToTop from "../ScrollToTop";
 
 const { Header, Content, Footer } = Layout;
 
@@ -68,6 +70,7 @@ export default function RootLayout() {
       </Header>
       <Layout className="mt-[50px]">
         <Layout>
+          <ScrollToTop />
           <Content className="container mx-auto min-h-dvh">
             <Outlet />
           </Content>
@@ -84,6 +87,7 @@ export default function RootLayout() {
           <Footers />
         </Footer>
       </Layout>
+      <Gotop />
     </Layout>
   );
 }
