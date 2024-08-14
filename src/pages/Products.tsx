@@ -10,6 +10,7 @@ import { Row, Pagination } from "antd";
 import { useEffect, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
+import { useDebounce } from "../hooks/debounce";
 
 type TItem = {
   _id: string;
@@ -22,12 +23,13 @@ type TItem = {
 };
 
 export default function Products() {
-  // const [size, setSize] = useState(6);
   const [searchTerm, setSearchTerm] = useState("");
   const [fields, setFields] = useState({});
   const [sort, setSort] = useState({});
   const [page, setPage] = useState(1);
   const [limit] = useState(8);
+  // const [loading, setLoading] = useState(false);
+  const debouncedSearch = useDebounce(searchTerm, 500);
 
   const { state } = useLocation();
 
@@ -46,7 +48,7 @@ export default function Products() {
   ];
 
   const { data: product, isLoading: productLoading } = useGetAllProductQuery({
-    searchTerm,
+    searchTerm: debouncedSearch,
     sort,
     fields,
     page,
